@@ -13,9 +13,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run watch:css && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/main.css",
+    "watch": "chokidar \"./src/**/*.js\" -c \"npm run watch:css\"",
+    "dev": "concurrently \"npm run watch\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +37,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^7.0.0",
+    "postcss-cli": "8.3.1",
+    "tailwindcss": "^3.0.23"
   }
 }
